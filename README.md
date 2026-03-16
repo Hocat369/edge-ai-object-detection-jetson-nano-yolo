@@ -59,7 +59,7 @@ Real-time Object Detection Output
 
 ## 3. Project Structure
 
-리포지토리는 핵심 가중치 파일과 환경 설정, 그리고 테스트를 위한 구조로 구성되어 있습니다. (YOLOv5 코어 파일 제외)
+리포지토리는 핵심 가중치 파일과 환경 설정, 그리고 테스트를 위한 구조로 구성함 (YOLOv5 코어 파일 제외)
 
 ```
 edge-ai-object-detection-jetson-nano-yolo
