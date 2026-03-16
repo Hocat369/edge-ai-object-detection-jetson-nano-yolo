@@ -1,4 +1,4 @@
-# Jetson Nano 기반 Edge AI 객체 탐지 구현 (YOLOv5)
+# Jetson Nano 기반 Edge AI 실시간 객체 탐지 구현 (YOLOv5)
 
 # Implementing Edge AI Real-time Object Detection on Jetson Nano using YOLOv5
 
