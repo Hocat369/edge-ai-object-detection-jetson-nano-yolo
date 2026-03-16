@@ -6,7 +6,6 @@
 ![Jetson Nano](https://img.shields.io/badge/Hardware-Jetson_Nano-76B900)
 ![TensorRT](https://img.shields.io/badge/Optimization-TensorRT_FP16-green)
 
----
 
 ## 1. 개요
 
@@ -57,7 +56,6 @@ Bounding Box Rendering
 Real-time Object Detection Output
 ```
 
----
 
 ## 3. Project Structure
 
@@ -101,7 +99,6 @@ edge-ai-object-detection-jetson-nano-yolo
 * **Optimization:** TensorRT
 * **WebCam**: A4TECH PK910H (USB)
 
----
 
 ## 5. Dataset & Annotation
 
@@ -141,7 +138,7 @@ edge-ai-object-detection-jetson-nano-yolo
 * Train: 170 (91%)
 * Validation (9%)
 
----
+
 
 ## 6. Model Training (PC)
 
@@ -186,7 +183,7 @@ edge-ai-object-detection-jetson-nano-yolo
   ```
 - 훈련이 완료된 best.pt, 변환된 best.onnx 파일 usb, 데이터셋 파일은 Jetson Nano 에 복사
 
----
+
 
 ## 7. Edge Device Deployment (Jetson Nano)
 
@@ -233,7 +230,7 @@ edge-ai-object-detection-jetson-nano-yolo
   python3 detect.py --weights best.engine --source 0 --img 640 --data my_dataset/data.yaml
   ```
 
----
+
 
 ## 8. Result
 
@@ -268,7 +265,7 @@ python3 val.py --weights best.engine --data my_dataset/data.yaml --img 640 --bat
 
 TensorRT 형식으로의 변환과 양자화를 통해 처리속도가 3.2FPS에서 7.2FPS로 유의미하게 증가된 것을 확인 할 수 있다. 세부적으로는 Preprocess나 Postprocess는 CPU가 주로 담당하는 일이라 변화가 적었지만,  연산작업이 큰 Inference 부분에서 시간이 **219.8ms**에서 **85.3ms**로 약 2.5배 개선되었다.
 
----
+
 
 ## 9. Troubleshooting
 
