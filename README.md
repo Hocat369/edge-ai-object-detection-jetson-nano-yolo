@@ -170,7 +170,7 @@ edge-ai-object-detection-jetson-nano-yolo
   ```
 - 학습결과
 
-  - runs/train/exp 내에 best.pt 파일 생성
+  - runs/train/exp 내에 best.pt 가중치 파일 생성
   - 조기 종료(Early Stopping, patience=100)가 작동하여 182번째 에포크에서 학습이 자동 중단됨
 
 ### 3) 모델 변환 (Export)
@@ -181,7 +181,7 @@ edge-ai-object-detection-jetson-nano-yolo
   ```
   python export.py --weights runs/train/exp/weights/best.pt --include onnx
   ```
-- 훈련이 완료된 best.pt, 변환된 best.onnx 파일, 커스텀 데이터셋 파일은 Jetson Nano 에 복사
+- best.pt, best.onnx, 커스텀 데이터셋을 Jetson Nano에 복사
 
 
 
