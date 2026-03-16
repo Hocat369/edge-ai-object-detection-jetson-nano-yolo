@@ -267,7 +267,7 @@ TensorRT 형식으로의 변환과 양자화를 통해 처리속도가 3.2FPS에
 
 ## 9. Troubleshooting
 
-**의존성(Dependency) 및 버전 호환성 충돌**
+**의존성 및 버전 호환성 충돌**
 
 * **[PC 환경]** YOLOv5(v6.2)와 최신 버전의 NumPy(v2.x) 간의 호환성 충돌로 인한 에러가 발생하여 NumPy 버전을 `1.24` 미만으로 명시적 다운그레이드를 통해 해결하였다.
 * **[Edge 환경]** Jetson Nano의 제한된 OS 환경(JetPack 4.6.1)에서 최신 `ultralytics` 통합 라이브러리 설치 시 의존성 꼬임 문제가 발생했다.  PyTorch, torchvision, OpenCV 등 필요한 라이브러리를 개별적으로 설치하는 방식으로 해결하였다. 이후에도 일부 의존성 문제로 인해 라이브러리 버전을 조정하거나 YOLOv5 내부 Python 파일을 일부 수정을 통해 문제를 해결하였다.
