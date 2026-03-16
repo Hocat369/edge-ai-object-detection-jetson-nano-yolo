@@ -105,7 +105,7 @@ edge-ai-object-detection-jetson-nano-yolo
 ### 1) 데이터셋 수집
 
 스마트폰 카메라를 활용하여  3가지 배경(background) 과 3가지 조명 조건에서 다양한 각도로 커피 스틱 이미지를 촬영하였다.
-이를 통해 실제 환경에서 발생할 수 있는조명 변화와 배경 변화를 반영하고자 하였다. 총 **51장의 이미지 데이터**를 수집하였다.
+이를 통해 실제 환경에서 발생할 수 있는조명 변화와 배경 변화를 반영하고자 하였다. 총 **51장**의 이미지 데이터를 수집하였다.
 
 ### 2) Annotation
 
@@ -124,13 +124,13 @@ edge-ai-object-detection-jetson-nano-yolo
 
 - Roboflow 툴 사용
 - 적은 양의 데이터셋을 보완하기 위해 다양한 설정 사용
-- Augmentation 적용된 이미지로 Train 이미지 x5
+- Augmentation 적용하여 Train 이미지 x5 생성
 - 세부 설정
-  Flip: Horizontal, Vertical
-  Rotation: Between -45° and +45°
-  Noise: Up to 1.8% of pixels
-  Mosaic: Applied
-  Motion Blur: Length 20px, Angle: 0°, Frames: 1
+  - Flip: Horizontal, Vertical
+  - Rotation: Between -45° and +45°
+  - Noise: Up to 1.8% of pixels
+  - Mosaic: Applied
+  - Motion Blur: Length 20px, Angle: 0°, Frames: 1
 
 **최종 Dataset Distribution**
 
