@@ -215,7 +215,7 @@ edge-ai-object-detection-jetson-nano-yolo
 
 - **.onnx ➔ .engine**
 - 학습된 모델을 nvidia에 최적화된 **TensorRT** 프레임워크 형식으로 변환
-- **양자화 (Quantization)**: 데이터 타입을 기존 FP32에서 FP16(16비트 부동소수점)으로 정밀도를 낮추어 메모리 사용량 감소 및 추론 속도 대폭 향상. 부동소수점의 길이를 줄여 연산량을 완화
+- **양자화 (Quantization)**: 데이터 타입을 기존 FP32에서 FP16(16비트 부동소수점)으로 변환하여 메모리 사용량을 줄이고 연산량 완화 및 추론 속도 향상
 
   ```
   /usr/src/tensorrt/bin/trtexec --onnx=best.onnx --saveEngine=best.engine --fp16
@@ -240,11 +240,9 @@ edge-ai-object-detection-jetson-nano-yolo
 
 ![alt text](assets/demo_2.gif) ![alt text](assets/demo_1.gif)
 
-Jetson Nano 환경에서 실시간 객체 탐지가 정상적으로 동작함을 확인하였다.
-
 ### 2) 속도 성능 평가 (PyTorch vs TensorRT)
 
-Jetson Nano 환경에서 val.py 통해 일반 PyTorch 모델과 TensorRT 최적화 모델의 처리 속도를 비교하였다.
+Jetson Nano 환경에서 val.py 통해 Jetson Nano 환경에서 일반 PyTorch 모델과 TensorRT 최적화 모델의 처리 속도를 비교하였다.
 
 **실행코드**
 
@@ -313,7 +311,7 @@ TensorRT 형식으로의 변환과 양자화를 통해 처리속도가 3.2FPS에
 
 또한 본 프로젝트를 통해 제한된 메모리 환경, 프레임워크 버전 호환성 문제, Jetson Nano의 구형 소프트웨어 스택과 같은 다양한 Edge AI 환경의 현실적인 제약을 경험하고 이를 해결하는 과정을 수행하였다. 이러한 과정은 단순한 모델 학습을 넘어 AI 모델을 실제 하드웨어 환경에 배포하고 운영하는 Edge AI 시스템 구현 과정 전반을 이해하는 데 중요한 경험이 되었다.
 
-해당 프로젝트를 통해 Edge Device 환경에서도 딥러닝 기반 객체 탐지 시스템을 실제로 구현하고 최적화할 수 있음을 확인하였다. 이는 공부중인 PLC 제어와 함께 향후 하드웨어 제어 및 산업 자동화 시스템으로 확장하기 위한 기술적 토대가 되었다.
+해당 프로젝트를 통해 Edge Device 환경에서도 딥러닝 기반 객체 탐지 시스템을 실제로 구현하고 최적화할 수 있음을 확인하였다. 이는 공부중인 PLC 제어와 함께 향후 하드웨어 제어 및 산업 자동화 시스템 프로젝트로의 기술적 토대와 확장 가능성을 확인하였다.
 
 ## 12. Future Work
 
