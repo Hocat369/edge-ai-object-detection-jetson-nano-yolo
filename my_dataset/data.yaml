@@ -1,0 +1,12 @@
+train: my_dataset/train/images
+val: my_dataset/valid/images
+
+nc: 3
+names: ['KANU', 'espresso_mini', 'mix_coffee']
+
+roboflow:
+  workspace: junsigs-workspace
+  project: my-first-project-nkqvd
+  version: 4
+  license: Private
+  url: https://app.roboflow.com/junsigs-workspace/my-first-project-nkqvd/4
