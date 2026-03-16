@@ -242,7 +242,7 @@ edge-ai-object-detection-jetson-nano-yolo
 
 ### 2) 속도 성능 평가 (PyTorch vs TensorRT)
 
-Jetson Nano 환경에서 val.py 통해 Jetson Nano 환경에서 일반 PyTorch 모델과 TensorRT 최적화 모델의 처리 속도를 비교하였다.
+val.py 통해 Jetson Nano 환경에서 일반 PyTorch 모델과 TensorRT 최적화 모델의 처리 속도를 비교하였다.
 
 **실행코드**
 
