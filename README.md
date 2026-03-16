@@ -63,22 +63,22 @@ Real-time Object Detection Output
 
 ```
 edge-ai-object-detection-jetson-nano-yolo
-├── assets\
-├── env\
+├── assets/
+├── env/
 │   ├── requirements_pc.txt    # PC (Windows/Conda) 환경 종속성 패키지
 │   └── requirements_nano.txt  # Jetson Nano 환경 종속성 패키지
-├── my_dataset\                # 커스텀 데이터셋
-│   ├── train\
-│   ├── valid\  
+├── my_dataset/                # 커스텀 데이터셋
+│   ├── train/
+│   ├── valid/  
 │   └── data.yaml              # 클래스 정의 및 데이터 경로 설정 파일
-├── weights\
+├── weights/
 │   ├── best.pt                # PyTorch 원본 가중치 (학습 결과)
 │   ├── best.onnx              # TensorRT 변환을 위한 공용 포맷
 │   └── best.engine            # TensorRT 최적화, 양자화 (FP16)
 └── README.md                  # 프로젝트 통합 문서
 ```
 
----
+
 
 ## 4. 개발 환경
 
@@ -144,7 +144,7 @@ edge-ai-object-detection-jetson-nano-yolo
 
 ### 1) 초기 세팅
 
-- 세부 Dependency는 requirements.txt 참고
+- 세부 dependencies는 `env/environment_pc.yaml` 참고
 - YOLOv5 저장소 가져오기
 
   ```
@@ -189,7 +189,7 @@ edge-ai-object-detection-jetson-nano-yolo
 
 ### 1) 초기 세팅
 
-- 세부 Dependency는 requirements.txt 참고
+- 세부 dependencies는 `env/requirements_nano.txt` 참고
 - YOLOv5 저장소 가져오기
 
   ```
