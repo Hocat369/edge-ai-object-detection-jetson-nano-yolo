@@ -134,9 +134,9 @@ edge-ai-object-detection-jetson-nano-yolo
 
 **최종 Dataset Distribution**
 
-* Total images: 187
-* Train: 170 (91%)
-* Validation (9%)
+* **Total images: 187**
+* **Train: 170 (91%)**
+* **Validation (9%)**
 
 
 
@@ -181,7 +181,7 @@ edge-ai-object-detection-jetson-nano-yolo
   ```
   python export.py --weights runs/train/exp/weights/best.pt --include onnx
   ```
-- 훈련이 완료된 best.pt, 변환된 best.onnx 파일 usb, 데이터셋 파일은 Jetson Nano 에 복사
+- 훈련이 완료된 best.pt, 변환된 best.onnx 파일, 커스텀 데이터셋 파일은 Jetson Nano 에 복사
 
 
 
