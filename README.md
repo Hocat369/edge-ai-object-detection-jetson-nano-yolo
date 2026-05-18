@@ -190,7 +190,7 @@ edge-ai-object-detection-jetson-nano-yolo
 
 ---
 
-## 7. Edge Device Deployment (Jetson Nano)
+## 7. 엣지 디바이스 배포 (Jetson Nano)
 
 ### 7.1 초기 세팅
 
