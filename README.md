@@ -6,6 +6,7 @@
 ![Jetson Nano](https://img.shields.io/badge/Hardware-Jetson_Nano-76B900)
 ![TensorRT](https://img.shields.io/badge/Optimization-TensorRT_FP16-green)
 
+---
 
 ## 1. 개요
 
@@ -21,6 +22,8 @@
 
 ### Demo
 ![alt text](assets/demo_1.gif)
+
+---
 
 ## 2. System Architecture
 
@@ -56,6 +59,7 @@ Bounding Box Rendering
 Real-time Object Detection Output
 ```
 
+---
 
 ## 3. Project Structure
 
@@ -78,7 +82,7 @@ edge-ai-object-detection-jetson-nano-yolo
 └── README.md                  # 프로젝트 통합 문서
 ```
 
-
+---
 
 ## 4. 개발 환경
 
@@ -99,15 +103,16 @@ edge-ai-object-detection-jetson-nano-yolo
 * **Optimization:** TensorRT
 * **WebCam**: A4TECH PK910H (USB)
 
+---
 
-## 5. Dataset & Annotation
+## 5. 데이터셋 & Annotation
 
-### 1) 데이터셋 수집
+### 5.1 데이터셋 수집
 
 스마트폰 카메라를 활용하여  3가지 배경(background) 과 3가지 조명 조건에서 다양한 각도로 커피 스틱 이미지를 촬영하였다.
 이를 통해 실제 환경에서 발생할 수 있는조명 변화와 배경 변화를 반영하고자 하였다. 총 **51장**의 이미지 데이터를 수집하였다.
 
-### 2) Annotation
+### 5.2 Annotation
 
 **라벨링:**
 ![alt text](assets/roboflow.png)
@@ -138,11 +143,11 @@ edge-ai-object-detection-jetson-nano-yolo
 * **Train: 170 (91%)**
 * **Validation (9%)**
 
+---
 
+## 6. 모델 학습 (PC)
 
-## 6. Model Training (PC)
-
-### 1) 초기 세팅
+### 6.1 초기 세팅
 
 - 세부 dependencies는 `env/environment_pc.yaml` 참고
 - YOLOv5 저장소 가져오기
@@ -158,7 +163,7 @@ edge-ai-object-detection-jetson-nano-yolo
   pip install "numpy<1.24"
   ```
 
-### 2) AI 학습 (Training)
+### 6.2 AI 학습
 
 - 커스텀 데이터셋으로 학습 코드 실행
 - `--img 640` : 특징(Feature) 추출 능력 극대화를 위해 최댓값 설정
@@ -173,7 +178,7 @@ edge-ai-object-detection-jetson-nano-yolo
   - runs/train/exp 내에 best.pt 가중치 파일 생성
   - 조기 종료(Early Stopping, patience=100)가 작동하여 182번째 에포크에서 학습이 자동 중단됨
 
-### 3) 모델 변환 (Export)
+### 6.3 모델 변환 (Export)
 
 - **.pt** ➔ **.onnx**
 - 이후 best.pt를 **TensorRT** 프레임워크 형식으로 변환을 위해 중간단계로 오픈소스 공용 형식인 onnx 파일로 변환
@@ -183,11 +188,11 @@ edge-ai-object-detection-jetson-nano-yolo
   ```
 - best.pt, best.onnx, 커스텀 데이터셋을 Jetson Nano에 복사
 
-
+---
 
 ## 7. Edge Device Deployment (Jetson Nano)
 
-### 1) 초기 세팅
+### 7.1 초기 세팅
 
 - 세부 dependencies는 `env/requirements_nano.txt` 참고
 - YOLOv5 저장소 가져오기
@@ -211,7 +216,7 @@ edge-ai-object-detection-jetson-nano-yolo
   echo '/swapfile swap swap defaults 0 0' | sudo tee -a /etc/fstab
   ```
 
-### 2) 최적화
+### 7.2 최적화
 
 - **.onnx ➔ .engine**
 - 학습된 모델을 nvidia에 최적화된 **TensorRT** 프레임워크 형식으로 변환
@@ -221,7 +226,7 @@ edge-ai-object-detection-jetson-nano-yolo
   /usr/src/tensorrt/bin/trtexec --onnx=best.onnx --saveEngine=best.engine --fp16
   ```
 
-### 3) 모델 실행
+### 7.3 모델 실행
 
 - detect.py를 통해 실시간 객체 인식 실행
 - `--source 0`: 웹캠 (USB)
@@ -230,17 +235,17 @@ edge-ai-object-detection-jetson-nano-yolo
   python3 detect.py --weights best.engine --source 0 --img 640 --data my_dataset/data.yaml
   ```
 
+---
 
+## 8. 결과
 
-## 8. Result
-
-### 1) 실시간 객체 인식
+### 8.1 실시간 객체 인식
 
 데이터셋의 제한된 크기로 인해 정량적인 성능 평가에는 한계가 있으므로, 본 프로젝트에서는 실제 시연을 통한 정성적 평가를 통해 객체 탐지 성능을 확인하였다.
 
 ![alt text](assets/demo_2.gif) ![alt text](assets/demo_1.gif)
 
-### 2) 속도 성능 평가 (PyTorch vs TensorRT)
+### 8.2 속도 성능 평가 (PyTorch vs TensorRT)
 
 val.py 통해 Jetson Nano 환경에서 일반 PyTorch 모델과 TensorRT 최적화 모델의 처리 속도를 비교하였다.
 
@@ -263,9 +268,9 @@ python3 val.py --weights best.engine --data my_dataset/data.yaml --img 640 --bat
 
 TensorRT 형식으로의 변환과 양자화를 통해 처리속도가 3.2FPS에서 7.2FPS로 유의미하게 증가된 것을 확인 할 수 있다. 세부적으로는 Preprocess나 Postprocess는 CPU가 주로 담당하는 일이라 변화가 적었지만,  연산작업이 큰 Inference 부분에서 시간이 **219.8ms**에서 **85.3ms**로 약 2.5배 개선되었다.
 
+---
 
-
-## 9. Troubleshooting
+## 9. 트러블슈팅
 
 **의존성 및 버전 호환성 충돌**
 
@@ -280,7 +285,9 @@ TensorRT 형식으로의 변환과 양자화를 통해 처리속도가 3.2FPS에
 
 - `val.py`를 통한 성능 측정 중  `.pt` 모델 로드 시, 배치 크기로 인해  메모리 부족으로 측정이 중단되는 현상이 지속되었다.  `--batch-size 1` 옵션을 강제하여 한 번에 하나의 이미지만 처리하도록 설정하였다.
 
-## 10. Limitation
+---
+
+## 10. 한계점
 
 **제한적인 데이터셋 규모**
 
@@ -301,7 +308,7 @@ TensorRT 형식으로의 변환과 양자화를 통해 처리속도가 3.2FPS에
 - Jetson Nano는 출시 이후 시간이 지난 플랫폼이기 때문에 최근 Edge AI 플랫폼(예: Jetson Orin 시리즈)에 비해 최신 개발 사례나 참고 자료가 상대적으로 제한적이다.
 - 환경 설정 및 문제 해결 과정에서 시행착오가 발생할 수 있으며, 개발 과정이 다소 복잡해질 수 있다.
 
-## 11. Conclusion
+## 11. 결론
 
 해당 프로젝트에서는 제한된 연산 자원을 가진 엣지 디바이스 환경에서 실시간 객체 탐지 시스템을 구현하기 위해 Jetson Nano와 YOLO를 기반으로 Edge AI 객체 인식 파이프라인을 설계하고 구축하였다.
 
